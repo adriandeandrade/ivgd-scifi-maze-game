@@ -4,14 +4,21 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    [Header("Transforms")]
     [SerializeField] private Transform target;
 
-    [SerializeField] private Vector3 offset;
+    [Header("Camera Options")]
     [SerializeField] private float cameraSpeed;
+    [SerializeField] private float mouseSensitivtyX;
+    [SerializeField] private float mouseSensitivtyY;
+    [SerializeField] private float viewAngle;
 
     private void LateUpdate()
     {
-        transform.position = Vector3.Lerp(transform.position, target.position + offset, cameraSpeed * Time.deltaTime);
-        transform.LookAt(target.position);
+        // Set the position of the camera to always be on top of the player.
+        Vector3 targetPos = new Vector3(target.position.x, target.position.y, target.position.z);
+        transform.position = Vector3.Lerp(transform.position, targetPos, cameraSpeed);
+
+        transform.eulerAngles = target.eulerAngles;
     }
 }
