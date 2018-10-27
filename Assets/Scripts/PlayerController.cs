@@ -3,8 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
+[RequireComponent(typeof(Shooting))]
 public class PlayerController : MonoBehaviour
 {
+    [Header("Player Variables")]
+    [SerializeField] private int health;
+
     [Header("Movement Options")]
     [SerializeField] private float moveSpeed;
     [SerializeField] private float jumpSpeed;
@@ -14,23 +18,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float mouseSensitivtyX;
     [SerializeField] private float mouseSensitivtyY;
 
-    [Header("Transforms")]
-    [SerializeField] private Transform cameraPivot;
-    [SerializeField] private Transform gun;
-    [SerializeField] private Transform shootPoint;
-
-    [Header("GameObjects")]
-    [SerializeField] private GameObject crosshair;
-    [SerializeField] private GameObject bulletPrefab;
-
     [HideInInspector] public Vector3 moveDirection;
-    private Vector3 aimPosition;
+    private bool hasChip; // This is becomes true when you pickup the chip to allow you to shoot.
 
     private CharacterController characterController;
+    private Shooting shootingController;
 
     private void Start()
     {
         characterController = GetComponent<CharacterController>(); // Gets the character controller component
+        shootingController = GetComponent<Shooting>();
     }
 
     private void Update()
@@ -39,7 +36,7 @@ public class PlayerController : MonoBehaviour
 
         if(Input.GetMouseButtonDown(0))
         {
-            Shoot();
+            shootingController.Shoot();
         }
     }
 
@@ -47,7 +44,7 @@ public class PlayerController : MonoBehaviour
     {
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
-        
+
         moveDirection = (transform.forward * moveVertical) + (transform.right * moveHorizontal);
 
         if (characterController.isGrounded)
@@ -58,7 +55,7 @@ public class PlayerController : MonoBehaviour
                 verticalSpeed = jumpSpeed;
             }
         }
-
+        
         verticalSpeed -= gravity * Time.deltaTime;
         moveDirection.y = verticalSpeed;
 
@@ -68,14 +65,10 @@ public class PlayerController : MonoBehaviour
 
     private void HandleRotation()
     {
-        float rotationAmountX = Input.GetAxis("Mouse X") * mouseSensitivtyX * Time.deltaTime;
+        float rotationAmountX = Input.GetAxisRaw("Mouse X") * mouseSensitivtyX * Time.deltaTime;
         transform.Rotate(new Vector3(0f, rotationAmountX, 0f));
-    }
-
-    private void Shoot()
-    {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        GameObject bulletInstance = Instantiate(bulletPrefab, shootPoint.position, Quaternion.identity);
-        Destroy(bulletInstance, 5f);
+        float rotationAmountY = Input.GetAxisRaw("Mouse Y") * mouseSensitivtyY * Time.deltaTime;
+        transform.Rotate(new Vector3(-rotationAmountY, 0f, 0f));
+        transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0f);
     }
 }
