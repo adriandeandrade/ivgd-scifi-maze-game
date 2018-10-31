@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Player Variables")]
     [SerializeField] private int health;
+    [SerializeField] private GameObject jumpParticleEffect;
 
     [Header("Movement Options")]
     [SerializeField] private float moveSpeed;
@@ -53,6 +54,8 @@ public class PlayerController : MonoBehaviour
             if (Input.GetButtonDown("Jump"))
             {
                 verticalSpeed = jumpSpeed;
+                GameObject jumpEffect = Instantiate(jumpParticleEffect, transform.position, Quaternion.identity);
+                Destroy(jumpEffect, 2.5f);
             }
         }
         
