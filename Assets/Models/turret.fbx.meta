@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ce0b27cb77f538a45972b33de9125df0
+guid: da111235d74014044800abc201968f8e
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -7,10 +7,13 @@ ModelImporter:
     100002: //RootNode
     400000: polySurface1
     400002: //RootNode
-    2100000: polySurface1Mat
+    2100000: initialShadingGroup
     2300000: polySurface1
+    2300002: //RootNode
     3300000: polySurface1
-    4300000: polySurface1
+    3300002: //RootNode
+    4300000: polySurface1.001
+    4300002: polySurface1
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -83,7 +86,6 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     rootMotionBoneName: 
-    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1

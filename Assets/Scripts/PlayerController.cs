@@ -4,10 +4,10 @@ using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(Shooting))]
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IDamageable
 {
     [Header("Player Variables")]
-    [SerializeField] private int health;
+    [SerializeField] private float health;
     [SerializeField] private GameObject jumpParticleEffect;
 
     [Header("Movement Options")]
@@ -73,5 +73,16 @@ public class PlayerController : MonoBehaviour
         float rotationAmountY = Input.GetAxisRaw("Mouse Y") * mouseSensitivtyY * Time.deltaTime;
         transform.Rotate(new Vector3(-rotationAmountY, 0f, 0f));
         transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0f);
+    }
+
+    public void TakeDamage(float amountOfDamage)
+    {
+        if(health <= 0)
+        {
+            Destroy(gameObject);
+        }
+
+        health -= amountOfDamage;
+
     }
 }
