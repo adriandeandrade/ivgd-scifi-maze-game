@@ -5,19 +5,27 @@ using UnityEngine.SceneManagement;
 
 public class Intro : MonoBehaviour
 {
-    [SerializeField] private Vector3 shakeVec;
-    [SerializeField] private float amount;
+    [Header("Targets")]
+    [SerializeField] private GameObject button;
     [SerializeField] private GameObject shakeTarget;
 
+    [Header("Colors")]
+    [SerializeField] private Color greenColor;
+    [SerializeField] private Color emissionColor;
+
+    [Header("Variables")]
+    [SerializeField] private float amount;
+    
+    [Header("Audio")]
     [SerializeField] private AudioSource audioData;
     [SerializeField] private AudioClip explosionSound;
 
-    [SerializeField] private GameObject button;
-    [SerializeField] private Color greenColor;
-    
+    [Header("UI")]
+    [SerializeField] private GameObject shootButtonUI;
 
-    [SerializeField] private bool canOpenDoor;
+    private Vector3 shakeVec;
     private bool isPlaying;
+    private bool canOpenDoor;
     private Renderer buttonRend;
 
     private void Start()
@@ -45,8 +53,8 @@ public class Intro : MonoBehaviour
     private void IntroStart()
     {
         shakeVec = new Vector3(amount, amount, amount);
-        iTween.ShakePosition(shakeTarget, iTween.Hash("name", "CameraShake", "amount", shakeVec, "time", amount * 2));
-        audioData.PlayOneShot(explosionSound);
+        iTween.ShakePosition(shakeTarget, iTween.Hash("name", "CameraShake", "amount", shakeVec, "time", amount * 2, "islocal", true));
+        //audioData.PlayOneShot(explosionSound);
         Invoke("ChangeButtonColor", 10f);
         
     }
@@ -54,8 +62,9 @@ public class Intro : MonoBehaviour
     private void ChangeButtonColor()
     {
         canOpenDoor = true;
-        buttonRend.material.SetColor("_Emission", greenColor);
+        buttonRend.material.SetColor("_EmissionColor", emissionColor);
         buttonRend.material.SetColor("_Color", greenColor);
+        UIManager.instance.ActivateUI("shootButton");
     }
 
     private void ChangeScene()

@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour
     public static UIManager instance;
 
     [SerializeField] private GameObject pressButtonUI;
+    [SerializeField] private GameObject shootButtonUI;
 
     private Dictionary<string, GameObject> uiObjects = new Dictionary<string, GameObject>();
 
@@ -26,6 +27,7 @@ public class UIManager : MonoBehaviour
     private void PopulateList()
     {
         uiObjects.Add("pressButton", pressButtonUI);
+        uiObjects.Add("shootButton", shootButtonUI);
     }
 
     public void ActivateUI(string panelName)

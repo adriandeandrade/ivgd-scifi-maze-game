@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DropZone : MonoBehaviour
 {
@@ -33,6 +34,6 @@ public class DropZone : MonoBehaviour
 
     private void EndGame()
     {
-        // Goto Main Menu
+        SceneManager.LoadScene(0);
     }
 }
