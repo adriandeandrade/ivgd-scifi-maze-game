@@ -319,6 +319,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pressButtonUI: {fileID: 549165965}
+  shootButtonUI: {fileID: 0}
 --- !u!4 &209189630
 Transform:
   m_ObjectHideFlags: 0
@@ -819,7 +820,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4824680678874052, guid: 979e130bab4642240b71281e366ec6ef, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 771.23
+      value: 771.2
       objectReference: {fileID: 0}
     - target: {fileID: 4824680678874052, guid: 979e130bab4642240b71281e366ec6ef, type: 2}
       propertyPath: m_LocalPosition.y
@@ -827,7 +828,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4824680678874052, guid: 979e130bab4642240b71281e366ec6ef, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 349.57
+      value: 351.2
       objectReference: {fileID: 0}
     - target: {fileID: 4824680678874052, guid: 979e130bab4642240b71281e366ec6ef, type: 2}
       propertyPath: m_LocalRotation.x
@@ -3005,6 +3006,49 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 571aa635b97fc8442b64baa7a14a312f, type: 3}
   m_IsPrefabAsset: 0
+--- !u!1 &1896386522
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1896386523}
+  - component: {fileID: 1896386524}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1896386523
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1896386522}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 232.10948, y: 29.668, z: 47.679108}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1896386524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1896386522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34dec93e14af3de4f8626dd76db176e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  respawnLocation: {fileID: 0}
+  cameraPos: {x: 0, y: 0, z: 0}
+  playerPrefab: {fileID: 0}
 --- !u!4 &1932811560 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 59d817718dff0ff4c980969e8abde669,
@@ -3072,7 +3116,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4575188774426054, guid: 9b21385f18fe16e408198295519901cb, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 772.05994
+      value: 772.02997
       objectReference: {fileID: 0}
     - target: {fileID: 4575188774426054, guid: 9b21385f18fe16e408198295519901cb, type: 2}
       propertyPath: m_LocalPosition.y
@@ -3080,7 +3124,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4575188774426054, guid: 9b21385f18fe16e408198295519901cb, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 362.09
+      value: 363.72
       objectReference: {fileID: 0}
     - target: {fileID: 4575188774426054, guid: 9b21385f18fe16e408198295519901cb, type: 2}
       propertyPath: m_LocalRotation.x
@@ -3119,6 +3163,16 @@ Prefab:
     - target: {fileID: 4612415774141190, guid: 9b21385f18fe16e408198295519901cb, type: 2}
       propertyPath: m_LocalPosition.z
       value: -9.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 114034240759607670, guid: 9b21385f18fe16e408198295519901cb,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114726577130850444, guid: 9b21385f18fe16e408198295519901cb,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b21385f18fe16e408198295519901cb, type: 2}

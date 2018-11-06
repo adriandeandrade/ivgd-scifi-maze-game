@@ -1,13 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(Shooting))]
 public class PlayerController : MonoBehaviour, IDamageable
 {
     [Header("Player Variables")]
-    [SerializeField] private float health;
+    [SerializeField] public float health;
     [SerializeField] private GameObject jumpParticleEffect;
     [SerializeField] private Transform grabPoint;
     [SerializeField] private bool useLookAt = false;
@@ -29,10 +30,13 @@ public class PlayerController : MonoBehaviour, IDamageable
     private Shooting shootingController;
     private GameObject currentObject;
 
+    private GameManager gameManager;
+
     private void Start()
     {
         characterController = GetComponent<CharacterController>(); // Gets the character controller component
         shootingController = GetComponent<Shooting>();
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     private void Update()
@@ -101,7 +105,10 @@ public class PlayerController : MonoBehaviour, IDamageable
     {
         if (health <= 0)
         {
+            Scene loadedLevel = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(loadedLevel.buildIndex);
             Destroy(gameObject);
+
         }
 
         health -= amountOfDamage;

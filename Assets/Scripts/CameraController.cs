@@ -9,9 +9,15 @@ public class CameraController : MonoBehaviour
 
     [Header("Camera Options")]
     [SerializeField] private float cameraSpeed;
+    [SerializeField] private float damping = 5.0f;
     [SerializeField] private float mouseSensitivtyX;
     [SerializeField] private float mouseSensitivtyY;
     [SerializeField] private float viewAngle;
+    [SerializeField] private Vector3 bumperRayOffset;
+    [SerializeField] private float bumperDistanceCheck = 2.5f;
+    [SerializeField] private float distance = 3.0f;
+    [SerializeField] private float height = 1.0f;
+    [SerializeField] private float bumperCameraHeight = 1.0f;
 
     private void Update()
     {
