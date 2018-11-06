@@ -7,6 +7,8 @@ public class DropZone : MonoBehaviour
 {
     [SerializeField] private float amountOfKeys;
 
+    public GameObject player;
+
     [SerializeField] private GameObject rocket;
     [SerializeField] private float speed;
     private bool allKeys = false;
@@ -21,6 +23,7 @@ public class DropZone : MonoBehaviour
 
         if(allKeys)
         {
+            //Destroy(player);
             LaunchRocket();
         }
     }

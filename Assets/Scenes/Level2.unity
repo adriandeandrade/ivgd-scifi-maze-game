@@ -1164,6 +1164,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 82b86d1b3a233bc4ba3824d69f2b3226,
     type: 3}
   m_PrefabInternal: {fileID: 38513822}
+--- !u!1 &39729625 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1162133012581630, guid: 979e130bab4642240b71281e366ec6ef,
+    type: 2}
+  m_PrefabInternal: {fileID: 418062145}
 --- !u!1001 &40466659
 Prefab:
   m_ObjectHideFlags: 0
@@ -11884,15 +11889,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4824680678874052, guid: 979e130bab4642240b71281e366ec6ef, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 769.92
+      value: 769.4
       objectReference: {fileID: 0}
     - target: {fileID: 4824680678874052, guid: 979e130bab4642240b71281e366ec6ef, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -6
+      value: -5.8
       objectReference: {fileID: 0}
     - target: {fileID: 4824680678874052, guid: 979e130bab4642240b71281e366ec6ef, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 337.18
+      value: 337
       objectReference: {fileID: 0}
     - target: {fileID: 4824680678874052, guid: 979e130bab4642240b71281e366ec6ef, type: 2}
       propertyPath: m_LocalRotation.x
@@ -11923,6 +11928,22 @@ Prefab:
         type: 2}
       propertyPath: useLookAt
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4225528573198180, guid: 979e130bab4642240b71281e366ec6ef, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0.095845714
+      objectReference: {fileID: 0}
+    - target: {fileID: 4225528573198180, guid: 979e130bab4642240b71281e366ec6ef, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.99539626
+      objectReference: {fileID: 0}
+    - target: {fileID: 4225528573198180, guid: 979e130bab4642240b71281e366ec6ef, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 4225528573198180, guid: 979e130bab4642240b71281e366ec6ef, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 979e130bab4642240b71281e366ec6ef, type: 2}
@@ -51946,7 +51967,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1806552092}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.0000001, y: 1.0000006, z: 1.0000007}
@@ -51963,6 +51984,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   amountOfKeys: 4
+  player: {fileID: 39729625}
   rocket: {fileID: 474198714}
   speed: 50
 --- !u!1001 &1806904713
