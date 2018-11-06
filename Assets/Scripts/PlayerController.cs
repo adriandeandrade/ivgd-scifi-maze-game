@@ -1,11 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Mono.Security.Cryptography;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(Shooting))]
 public class PlayerController : MonoBehaviour, IDamageable
 {
+    //emmanuel: new code here for  
+    public bool haskey = false;
+    
+    
     [Header("Player Variables")]
     [SerializeField] private float health;
     [SerializeField] private GameObject jumpParticleEffect;
@@ -25,6 +30,10 @@ public class PlayerController : MonoBehaviour, IDamageable
     private CharacterController characterController;
     private Shooting shootingController;
 
+    // added new code
+    public Key key;
+    public Key keyb;
+
     private void Start()
     {
         characterController = GetComponent<CharacterController>(); // Gets the character controller component
@@ -33,6 +42,17 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     private void Update()
     {
+
+        // new code here 
+        if (Input.GetKey(KeyCode.K))
+        {
+            
+            key.transform.parent = null;
+            keyb.transform.parent = null;
+
+
+        }
+
         Movement();
 
         if(Input.GetMouseButtonDown(0))
