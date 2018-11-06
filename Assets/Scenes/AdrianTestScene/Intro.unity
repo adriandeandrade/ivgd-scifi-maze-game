@@ -725,6 +725,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4225528573198180, guid: 979e130bab4642240b71281e366ec6ef,
     type: 2}
   m_PrefabInternal: {fileID: 1166067722}
+--- !u!4 &1026515185 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4173659995531908, guid: 979e130bab4642240b71281e366ec6ef,
+    type: 2}
+  m_PrefabInternal: {fileID: 1166067722}
 --- !u!1001 &1033026890
 Prefab:
   m_ObjectHideFlags: 0
@@ -947,6 +952,16 @@ Prefab:
       propertyPath: shootSound
       value: 
       objectReference: {fileID: 8300000, guid: 07db6fede0b373f4aafa3bc88c38a9eb, type: 3}
+    - target: {fileID: 114868630097345676, guid: 979e130bab4642240b71281e366ec6ef,
+        type: 2}
+      propertyPath: grabPoint
+      value: 
+      objectReference: {fileID: 1026515185}
+    - target: {fileID: 114868630097345676, guid: 979e130bab4642240b71281e366ec6ef,
+        type: 2}
+      propertyPath: useLookAt
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 979e130bab4642240b71281e366ec6ef, type: 2}
   m_IsPrefabAsset: 0

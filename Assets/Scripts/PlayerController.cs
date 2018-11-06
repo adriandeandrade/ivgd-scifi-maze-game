@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour, IDamageable
     [Header("Player Variables")]
     [SerializeField] private float health;
     [SerializeField] private GameObject jumpParticleEffect;
+    [SerializeField] private Transform grabPoint;
+    [SerializeField] private bool useLookAt = false;
 
     [Header("Movement Options")]
     [SerializeField] private float moveSpeed;
@@ -20,10 +22,12 @@ public class PlayerController : MonoBehaviour, IDamageable
     [SerializeField] private float mouseSensitivtyY;
 
     [HideInInspector] public Vector3 moveDirection;
-    private bool hasChip; // This is becomes true when you pickup the chip to allow you to shoot.
+
+    [SerializeField] public bool hasObject = false;
 
     private CharacterController characterController;
     private Shooting shootingController;
+    private GameObject currentObject;
 
     private void Start()
     {
@@ -35,10 +39,28 @@ public class PlayerController : MonoBehaviour, IDamageable
     {
         Movement();
 
-        if(Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
             shootingController.Shoot();
         }
+
+        if (useLookAt)
+        {
+            if (!hasObject)
+            {
+                LookAtObject();
+            }
+            else
+            {
+                if (Input.GetKeyDown(KeyCode.R))
+                {
+                    currentObject.transform.parent = null;
+                    hasObject = false;
+                    currentObject = null;
+                }
+            }
+        }
+
     }
 
     private void Movement()
@@ -58,7 +80,7 @@ public class PlayerController : MonoBehaviour, IDamageable
                 Destroy(jumpEffect, 2.5f);
             }
         }
-        
+
         verticalSpeed -= gravity * Time.deltaTime;
         moveDirection.y = verticalSpeed;
 
@@ -77,12 +99,39 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     public void TakeDamage(float amountOfDamage)
     {
-        if(health <= 0)
+        if (health <= 0)
         {
             Destroy(gameObject);
         }
 
         health -= amountOfDamage;
 
+    }
+
+    private void LookAtObject()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit))
+        {
+            Key key = hit.collider.GetComponent<Key>();
+            if (key != null)
+            {
+                if (Vector3.Distance(transform.position, key.transform.position) < 15f)
+                {
+                    UIManager.instance.ActivateUI("pressButton");
+                    if (Input.GetKeyDown(KeyCode.R))
+                    {
+                        UIManager.instance.DeactivateUI("pressButton");
+                        key.transform.SetParent(grabPoint);
+                        currentObject = key.gameObject;
+                        hasObject = true;
+                    }
+                }
+            }
+            else
+            {
+                UIManager.instance.DeactivateUI("pressButton");
+            }
+        }
     }
 }
