@@ -15,13 +15,19 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
-        transform.eulerAngles = target.eulerAngles;
+        if (target != null)
+        {
+            transform.eulerAngles = target.eulerAngles;
+        }
     }
 
     private void LateUpdate()
     {
-        // Set the position of the camera to always be on top of the player.
-        Vector3 targetPos = new Vector3(target.position.x, target.position.y, target.position.z);
-        transform.position = Vector3.Lerp(transform.position, targetPos, cameraSpeed);
+        if (target != null)
+        {
+            // Set the position of the camera to always be on top of the player.
+            Vector3 targetPos = new Vector3(target.position.x, target.position.y, target.position.z);
+            transform.position = Vector3.Lerp(transform.position, targetPos, cameraSpeed);
+        }
     }
 }

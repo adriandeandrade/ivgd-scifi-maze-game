@@ -13,11 +13,16 @@ public class Shooting : MonoBehaviour
     [SerializeField] private GameObject shootParticleEffect;
     private Color hitColor;
 
+    private AudioSource audioData;
+    [SerializeField] private AudioClip shootSound;
+
+
     private Camera cam;
 
     private void Start()
     {
         cam = Camera.main;
+        audioData = GetComponent<AudioSource>();
     }
 
     public void Shoot()
@@ -29,6 +34,8 @@ public class Shooting : MonoBehaviour
             {
                 CheckObjectHit(hit.collider, hit.point);
             }
+
+            audioData.PlayOneShot(shootSound);
 
             Vector3 direction = hit.point - shootPoint.position;
             Quaternion rot = Quaternion.LookRotation(direction);
@@ -46,26 +53,17 @@ public class Shooting : MonoBehaviour
         if (damageableObject != null)
         {
             damageableObject.TakeDamage(damage);
-            Color color = other.gameObject.GetComponent<Renderer>().material.color;
-            SpawnParticleSystem(hitpoint, color);
+            SpawnParticleSystem(hitpoint);
         }
         else
         {
-            SpawnParticleSystem(hitpoint, Color.white);
+            SpawnParticleSystem(hitpoint);
         }
     }
 
-    private void SpawnParticleSystem(Vector3 spawnPos, Color color)
+    private void SpawnParticleSystem(Vector3 spawnPos)
     {
         GameObject effect = Instantiate(hitParticleEffect, spawnPos, Quaternion.identity);
-        Renderer effectRenderer = effect.GetComponent<Renderer>();
-        effectRenderer.material.SetColor("_Color", color);
-        effectRenderer.material.SetColor("_EmissionColor", color);
         Destroy(effect, 2.5f);
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        
     }
 }
