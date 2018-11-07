@@ -20,16 +20,22 @@ public class Enemy : MonoBehaviour, IDamageable
     [SerializeField] private GameObject wallHitParticle;
     [SerializeField] private GameObject shootParticle;
 
+    [SerializeField] private AudioClip dieSound;
+    [SerializeField] private AudioClip shootSound;
+
+    private AudioSource audioData;
 
     private void Start()
     {
         targetPos = FindObjectOfType<PlayerController>().transform;
+        audioData = GetComponent<AudioSource>();
     }
 
     public void TakeDamage(float damage)
     {
         if (health <= 0)
         {
+            audioData.PlayOneShot(dieSound);
             Destroy(gameObject);
         }
         else
@@ -59,6 +65,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
     public void Shoot()
     {
+        audioData.PlayOneShot(shootSound);
         RaycastHit hit;
         if (Physics.Raycast(shootPoint.position, transform.forward, out hit))
         {

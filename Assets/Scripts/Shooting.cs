@@ -13,16 +13,12 @@ public class Shooting : MonoBehaviour
     [SerializeField] private GameObject shootParticleEffect;
     private Color hitColor;
 
-    private AudioSource audioData;
-    [SerializeField] private AudioClip shootSound;
-
 
     private Camera cam;
 
     private void Start()
     {
         cam = Camera.main;
-        audioData = GetComponent<AudioSource>();
     }
 
     public void Shoot()
@@ -34,8 +30,6 @@ public class Shooting : MonoBehaviour
             {
                 CheckObjectHit(hit.collider, hit.point);
             }
-
-            audioData.PlayOneShot(shootSound);
 
             Vector3 direction = hit.point - shootPoint.position;
             Quaternion rot = Quaternion.LookRotation(direction);

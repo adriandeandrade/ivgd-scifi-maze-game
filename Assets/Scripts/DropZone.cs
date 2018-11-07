@@ -6,10 +6,24 @@ using UnityEngine.SceneManagement;
 public class DropZone : MonoBehaviour
 {
     [SerializeField] private float amountOfKeys;
+    [SerializeField] private float speed;
+    [SerializeField] private Transform lookAt;
 
     [SerializeField] private GameObject rocket;
-    [SerializeField] private float speed;
+    public GameObject player;
+
+    private AudioSource audioData;
+    [SerializeField] private AudioClip winSound;
+
     private bool allKeys = false;
+
+    private CameraController camController;
+
+    private void Start()
+    {
+        audioData = GetComponent<AudioSource>();
+        camController = FindObjectOfType<CameraController>();
+    }
 
     private void Update()
     {
@@ -17,10 +31,12 @@ public class DropZone : MonoBehaviour
         if(keys.Length == amountOfKeys)
         {
             allKeys = true;
+            audioData.PlayOneShot(winSound);
         }
 
         if(allKeys)
         {
+            //Destroy(player);
             LaunchRocket();
         }
     }
@@ -29,7 +45,9 @@ public class DropZone : MonoBehaviour
     private void LaunchRocket()
     {
         rocket.transform.Translate(Vector3.up * speed * Time.deltaTime);
-        Invoke("EndGame", 3f);
+        camController.target = lookAt;
+        Destroy(FindObjectOfType<PlayerController>().gameObject);
+        Invoke("EndGame", 10f);
     }
 
     private void EndGame()

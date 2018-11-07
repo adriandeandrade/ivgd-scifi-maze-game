@@ -22,6 +22,12 @@ public class PlayerController : MonoBehaviour, IDamageable
     [SerializeField] private float mouseSensitivtyX;
     [SerializeField] private float mouseSensitivtyY;
 
+    [Header("Audio Clips")]
+    [SerializeField] public AudioClip jumpSound;
+    [SerializeField] public AudioClip shootSound;
+    [SerializeField] public AudioClip walkSound;
+    [SerializeField] public AudioClip dieSound;
+
     [HideInInspector] public Vector3 moveDirection;
 
     [SerializeField] public bool hasObject = false;
@@ -29,6 +35,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     private CharacterController characterController;
     private Shooting shootingController;
     private GameObject currentObject;
+    private AudioSource audioData;
 
     private GameManager gameManager;
 
@@ -37,6 +44,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         characterController = GetComponent<CharacterController>(); // Gets the character controller component
         shootingController = GetComponent<Shooting>();
         gameManager = FindObjectOfType<GameManager>();
+        audioData = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -46,6 +54,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         if (Input.GetMouseButtonDown(0))
         {
             shootingController.Shoot();
+            audioData.PlayOneShot(shootSound);
         }
 
         if (useLookAt)
@@ -79,6 +88,7 @@ public class PlayerController : MonoBehaviour, IDamageable
             verticalSpeed = 0;
             if (Input.GetButtonDown("Jump"))
             {
+                audioData.PlayOneShot(jumpSound);
                 verticalSpeed = jumpSpeed;
                 GameObject jumpEffect = Instantiate(jumpParticleEffect, transform.position, Quaternion.identity);
                 Destroy(jumpEffect, 2.5f);
@@ -105,6 +115,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     {
         if (health <= 0)
         {
+            audioData.PlayOneShot(dieSound);
             Scene loadedLevel = SceneManager.GetActiveScene();
             SceneManager.LoadScene(loadedLevel.buildIndex);
             Destroy(gameObject);
