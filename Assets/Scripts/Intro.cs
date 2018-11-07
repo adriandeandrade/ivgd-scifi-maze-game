@@ -54,7 +54,7 @@ public class Intro : MonoBehaviour
     {
         shakeVec = new Vector3(amount, amount, amount);
         iTween.ShakePosition(shakeTarget, iTween.Hash("name", "CameraShake", "amount", shakeVec, "time", amount * 2, "islocal", true));
-        //audioData.PlayOneShot(explosionSound);
+        audioData.PlayOneShot(explosionSound);
         Invoke("ChangeButtonColor", 10f);
         
     }

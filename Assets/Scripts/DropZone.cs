@@ -6,12 +6,20 @@ using UnityEngine.SceneManagement;
 public class DropZone : MonoBehaviour
 {
     [SerializeField] private float amountOfKeys;
-
-    public GameObject player;
+    [SerializeField] private float speed;
 
     [SerializeField] private GameObject rocket;
-    [SerializeField] private float speed;
+    public GameObject player;
+
+    private AudioSource audioData;
+    [SerializeField] private AudioClip winSound;
+
     private bool allKeys = false;
+
+    private void Start()
+    {
+        audioData = GetComponent<AudioSource>();
+    }
 
     private void Update()
     {
@@ -19,6 +27,7 @@ public class DropZone : MonoBehaviour
         if(keys.Length == amountOfKeys)
         {
             allKeys = true;
+            audioData.PlayOneShot(winSound);
         }
 
         if(allKeys)
