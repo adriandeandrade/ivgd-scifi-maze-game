@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     [Header("Transforms")]
-    [SerializeField] private Transform target;
+    [SerializeField] public Transform target;
 
     [Header("Camera Options")]
     [SerializeField] private float cameraSpeed;

@@ -7,6 +7,7 @@ public class DropZone : MonoBehaviour
 {
     [SerializeField] private float amountOfKeys;
     [SerializeField] private float speed;
+    [SerializeField] private Transform lookAt;
 
     [SerializeField] private GameObject rocket;
     public GameObject player;
@@ -16,9 +17,12 @@ public class DropZone : MonoBehaviour
 
     private bool allKeys = false;
 
+    private CameraController camController;
+
     private void Start()
     {
         audioData = GetComponent<AudioSource>();
+        camController = FindObjectOfType<CameraController>();
     }
 
     private void Update()
@@ -41,7 +45,9 @@ public class DropZone : MonoBehaviour
     private void LaunchRocket()
     {
         rocket.transform.Translate(Vector3.up * speed * Time.deltaTime);
-        Invoke("EndGame", 3f);
+        camController.target = lookAt;
+        Destroy(FindObjectOfType<PlayerController>().gameObject);
+        Invoke("EndGame", 10f);
     }
 
     private void EndGame()

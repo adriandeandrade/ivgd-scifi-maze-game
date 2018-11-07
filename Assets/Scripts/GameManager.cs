@@ -29,10 +29,13 @@ public class GameManager : MonoBehaviour
 
     private void CheckBounds()
     {
-        if(playerPrefab.transform.position.y < -200f)
+        if (playerPrefab != null)
         {
-            Scene loadedScene = SceneManager.GetActiveScene();
-            SceneManager.LoadScene(loadedScene.buildIndex);
+            if (playerPrefab.transform.position.y < -200f)
+            {
+                Scene loadedScene = SceneManager.GetActiveScene();
+                SceneManager.LoadScene(loadedScene.buildIndex);
+            }
         }
     }
 }
